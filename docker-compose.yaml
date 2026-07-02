@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: tigers_postgres
+    environment:
+      POSTGRES_USER: tigers_user
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: tigers
+    ports:
+      - "5433:5432"
+    volumes:
+      - tigers_pg_data:/var/lib/postgresql
+
+volumes:
+  tigers_pg_data:
