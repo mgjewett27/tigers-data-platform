@@ -1,0 +1,20 @@
+version: 2
+models:
+  - name: stg_games
+    columns:
+      - name: game_pk
+        tests: [not_null, unique]
+      - name: game_date
+        tests: [not_null]
+  - name: stg_batting
+    columns:
+      - name: game_pk
+        tests: [not_null]
+      - name: player_id
+        tests: [not_null]
+  - name: stg_pitching
+    columns:
+      - name: game_pk
+        tests: [not_null]
+      - name: player_id
+        tests: [not_null]

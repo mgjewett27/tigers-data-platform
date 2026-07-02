@@ -1,0 +1,7 @@
+snapshots:
+  - name: player_snapshot
+    relation: ref('stg_player_current')
+    config:
+      unique_key: player_id
+      strategy: check
+      check_cols: [current_team_id, position]

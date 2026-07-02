@@ -1,0 +1,56 @@
+version: 2
+models:
+  - name: dim_team
+    columns:
+      - name: team_id
+        tests: [unique, not_null]
+      - name: team_name
+        tests: [not_null]
+  - name: dim_date
+    columns:
+      - name: date_key
+        tests: [unique, not_null]
+  - name: dim_game
+    columns:
+      - name: game_pk
+        tests: [unique, not_null]
+  - name: dim_player
+    columns:
+      - name: player_key
+        tests: [unique, not_null]
+      - name: player_id
+        tests: [not_null]
+      - name: player_name
+        tests: [not_null]
+  - name: fact_batting
+    columns:
+      - name: game_pk
+        tests:
+          - not_null
+          - relationships: { arguments: { to: ref('dim_game'), field: game_pk } }
+      - name: player_id
+        tests:
+          - not_null
+          - relationships: { arguments: { to: ref('dim_player'), field: player_id } }
+      - name: team_id
+        tests:
+          - relationships: { arguments: { to: ref('dim_team'), field: team_id } }
+      - name: date_key
+        tests:
+          - relationships: { arguments: { to: ref('dim_date'), field: date_key } }
+  - name: fact_pitching
+    columns:
+      - name: game_pk
+        tests:
+          - not_null
+          - relationships: { arguments: { to: ref('dim_game'), field: game_pk } }
+      - name: player_id
+        tests:
+          - not_null
+          - relationships: { arguments: { to: ref('dim_player'), field: player_id } }
+      - name: team_id
+        tests:
+          - relationships: { arguments: { to: ref('dim_team'), field: team_id } }
+      - name: date_key
+        tests:
+          - relationships: { arguments: { to: ref('dim_date'), field: date_key } }

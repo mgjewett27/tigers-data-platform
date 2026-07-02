@@ -1,0 +1,4 @@
+{{ config(materialized='table') }}
+select away_team_id as team_id, away_team_name as team_name from {{ ref('stg_games') }}
+union
+select home_team_id as team_id, home_team_name as team_name from {{ ref('stg_games') }}

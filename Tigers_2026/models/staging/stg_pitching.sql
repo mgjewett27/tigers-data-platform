@@ -1,0 +1,28 @@
+with source as (select * from {{ source('raw', 'pitching') }})
+select
+    game_pk,
+    official_date::date       as game_date,
+    team_id,
+    player_id,
+    player_name,
+    position,
+    "inningsPitched"::numeric as innings_pitched,
+    hits::int                 as hits,
+    runs::int                 as runs,
+    "earnedRuns"::int         as earned_runs,
+    "homeRuns"::int           as home_runs,
+    "baseOnBalls"::int        as walks,
+    "intentionalWalks"::int   as intentional_walks,
+    "strikeOuts"::int         as strikeouts,
+    "hitByPitch"::int         as hit_by_pitch,
+    "battersFaced"::int       as batters_faced,
+    "numberOfPitches"::int    as pitches,
+    strikes::int              as strikes,
+    balls::int                as balls,
+    wins::int                 as wins,
+    losses::int               as losses,
+    saves::int                as saves,
+    holds::int                as holds,
+    "blownSaves"::int         as blown_saves,
+    loaded_at
+from source
