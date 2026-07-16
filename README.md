@@ -30,8 +30,8 @@ Python ingestion  -->  raw tables (Postgres)
 | Storage | PostgreSQL 18 |
 | Transformation | dbt (staging -> marts, tests, SCD2 snapshot) |
 | Visualization | Metabase |
-| Orchestration | Apache Airflow *(planned)* |
-| CI/CD | GitHub Actions *(planned)* |
+| Orchestration | Apache Airflow |
+| CI/CD | GitHub Actions |
 
 ## What's implemented
 
@@ -65,8 +65,8 @@ Postgres runs on host port **5433**; dbt builds into the `analytics` schema. See
 - [x] Ingestion (idempotent, incremental)
 - [x] dbt star schema + SCD2 snapshot + tests
 - [x] Metabase dashboards
-- [ ] Airflow daily orchestration
-- [ ] CI/CD (GitHub Actions)
+- [x] Airflow daily orchestration
+- [x] CI/CD (GitHub Actions)
 
 ## Concepts demonstrated
 
