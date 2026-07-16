@@ -1,0 +1,37 @@
+name: dbt CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: tigers_user
+          POSTGRES_PASSWORD: ci_password
+          POSTGRES_DB: tigers
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dbt (pinned to match local)
+        run: pip install --pre dbt-core==1.12.0b3 dbt-postgres==1.10.2
+      - name: Seed raw fixture
+        env:
+          PGPASSWORD: ci_password
+        run: psql -h localhost -U tigers_user -d tigers -f ci/seed_raw.sql
+      - name: dbt build
+        working-directory: Tigers_2026
+        run: dbt build --profiles-dir ../ci
