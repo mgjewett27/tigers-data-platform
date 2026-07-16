@@ -1,0 +1,12 @@
+tigers_dbt:
+  target: ci
+  outputs:
+    ci:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: tigers_user
+      password: ci_password
+      dbname: tigers
+      schema: analytics
+      threads: 4
