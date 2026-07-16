@@ -1,4 +1,4 @@
-tigers_dbt:
+Tigers_2026:
   target: ci
   outputs:
     ci:
