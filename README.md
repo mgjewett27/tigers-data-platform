@@ -2,6 +2,8 @@
 
 An end-to-end **ELT pipeline and analytics platform** for Detroit Tigers baseball — ingesting live MLB data, modeling it into a tested star schema, and surfacing it in dashboards. Built to deepen modern data-engineering skills on a dataset I actually care about.
 
+![Tigers 2026 dashboard](docs/Images/tigers-dashboard.png)
+
 > Sibling to a weather ELT project; this one applies the same patterns to baseball and adds a visualization layer.
 
 ## Architecture
@@ -27,7 +29,7 @@ Python ingestion  -->  raw tables (Postgres)
 | Ingestion | Python (requests, pandas, SQLAlchemy) |
 | Storage | PostgreSQL 18 |
 | Transformation | dbt (staging -> marts, tests, SCD2 snapshot) |
-| Visualization | Metabase *(planned)* |
+| Visualization | Metabase |
 | Orchestration | Apache Airflow *(planned)* |
 | CI/CD | GitHub Actions *(planned)* |
 
@@ -62,7 +64,7 @@ Postgres runs on host port **5433**; dbt builds into the `analytics` schema. See
 
 - [x] Ingestion (idempotent, incremental)
 - [x] dbt star schema + SCD2 snapshot + tests
-- [ ] Metabase dashboards
+- [x] Metabase dashboards
 - [ ] Airflow daily orchestration
 - [ ] CI/CD (GitHub Actions)
 

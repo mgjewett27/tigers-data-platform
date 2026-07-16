@@ -1,0 +1,28 @@
+version: 2
+models:
+  - name: mart_batting_season
+    description: >
+      Season-to-date batting totals and rate stats (AVG/OBP/SLG/OPS),
+      one row per player, Tigers (team 116) games only.
+    columns:
+      - name: player_id
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_id
+  - name: mart_pitching_season
+    description: >
+      Season-to-date pitching totals and rate stats (ERA/WHIP/K9),
+      one row per player, Tigers (team 116) games only.
+    columns:
+      - name: player_id
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              arguments:
+                to: ref('dim_player')
+                field: player_id
